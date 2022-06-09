@@ -1,7 +1,13 @@
 var introEl= document.querySelector("#intro")
 var qaViewEl= document.querySelector("#qa-view")
 var timerEl= document.querySelector("#time")
-var titleEl= document.querySelector("#title")
+var titleEl= document.querySelector
+("#title")
+var highScoresEl= document.querySelector("#high-scores")
+var inputInitialEl= document.querySelector("#input-initial")
+var enterInitialEl= document.querySelector("#enter-inital")
+var saveEl=document.querySelector("#save")
+var dashboard= document.querySelector("#dashboard")
 var answer1El= document.querySelector("#answer1")
 var answer2El= document.querySelector("#answer2")
 var answer3El= document.querySelector("#answer3")
@@ -82,6 +88,11 @@ answer2El.addEventListener("click",nextQuestion)
 answer3El.addEventListener("click",nextQuestion)
 answer4El.addEventListener("click",nextQuestion)
 
+function saveGame()
+{
+    
+}
 
+
+saveEl.addEventListener("submit",saveGame)
 startQuizBtn.addEventListener("click",startGame)
-
