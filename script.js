@@ -4,13 +4,17 @@ var startEl = document.getElementById('start');
 var startBtnEl = document.getElementById('startBtn');
 var questionContainerEl = document.getElementById('questionContainer');
 var questionTitleEl = document.getElementById('questionTitle');
-var choicesEl = document.getElementById('choices');
 var submitInitialsEl = document.getElementById('submitInitials');
 var finalScoreEl = document.getElementById('finalScore');
 var initialsEl = document.getElementById('initials');
 var highScoresEl = document.getElementById('highScores');
+var answer1El= document.querySelector("#answer1")
+var answer2El= document.querySelector("#answer2")
+var answer3El= document.querySelector("#answer3")
+var answer4El= document.querySelector("#answer4")
 
 // create variables for the questions (think about an array of objects to house your questions and choices and answers together). 
+
 
 var quizQuestions = [{
     question: "What does HTML stand for?",
@@ -44,7 +48,8 @@ var quizQuestions = [{
 }]
 
 // create a variable for the time..this should be a number for the timer to manipulate. 
-
+ var timeRemaining=75
+ var clockid
 
 
 // GIVEN I am taking a code quiz
@@ -67,3 +72,7 @@ var quizQuestions = [{
 
 // WHEN the game is over
 // THEN I can save my initials and my score
+
+choicesEl.addEventListener("click",nextQuestion)
+
+startBtnEl.addEventListener("click",startGame)

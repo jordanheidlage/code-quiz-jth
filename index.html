@@ -11,8 +11,7 @@
 <body>
     <!-- header containing highscores and timer -->
     <header>
-        <p>View highscores</p>
-        <p>timer: <span id="time">0</span></p>
+        <span id="high-scores">highScores</span>   <span  >Time Remaining: <span id="time">0</span> </span>
     </header>
     <!-- create 4 separate divs for prompt boxes-->
     <!-- first container contains start button to start quiz-->
@@ -24,8 +23,13 @@
     <!-- second container with the questions and choices -->
     <div id="questionContainer" class="hidden">
         <h2 id="questionTitle"></h2>
-        <div id="choices"></div>
-    </div>
+        <ul>
+            <li><button id="answer1">Answer1</button></li>
+            <li><button id="answer2">Answer1</button></li>
+            <li><button id="answer3">Answer1</button></li>
+            <li><button id="answer4">Answer1</button></li>
+        </ul>
+</div>
     <!-- enter initials in input box and submit button -->
     <div id="submitInitials" class="hidden">
         <h3>All Done</h3>
