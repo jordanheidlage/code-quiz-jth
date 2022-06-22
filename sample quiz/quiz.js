@@ -130,7 +130,7 @@ dashboard=innerHTML="";
 for (let i = 0; i < dashboard.length; i++) {
     const element = array[index];
     let li =document.createElement("li");
-    li.textContent = ${dashboard[i].enterInitialEl}:${dashboard[i].saveEl};
+    li.textContent = dashboard[i].enterInitialEl + ": " + dashboard[i].saveEl;
     dashboard.append(li);
 }
 
