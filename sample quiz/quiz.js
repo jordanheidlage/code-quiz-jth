@@ -113,11 +113,37 @@ inputInitialEl.classList.remove('hide')
 clearInterval(clockid)
 }
 
-function saveGame() {
-    // and time left becomes your score.
-    // When you click the submit, it store your initial and score in localstorage
+function saveGame(){
+    event.preventDefault();
+qaViewEl.classList.add('hide')
+inputInitialEl.classList.add('hide')
+inputInitialEl.classList.remove('hide')
+let initials = enterInitialEl.value.toUpperCase();
+dashboard.push({ initials: init, dashboard: timeRemaining});
+dashboard=innerHTML="";
+for (let i = 0; i < dashboard.length; i++) {
+    const element = array[index];
+    let li =document.createElement("li");
+    li.textContent = ${dashboard[i].enterInitialEl}: ${dashboard[i].saveEl}
+    dashboard.append(li);
 }
 
+storeScores();
+displayScores();
+    // and time left becomes your score.
+    // When you click the submit, it store your initial and score in localstorage
+function storeScores(){
+    localStorage.setItem("dashboard", JSON.stringify(dashboard));
+}
+function displayScores(){
+    let storedDashboard = JSON.parse(localStorage.getItem("dashboard"));
+}
+function clearScores() {
+    localStorage.clear();
+    scoreListEl.innerHTML="";
+}
+}
 
-// saveEl.addEventListener("submit", saveGame)
+clearScrBtn.addEventListener("click", clearScores);
+saveEl.addEventListener("submit", saveGame)
 startQuizBtn.addEventListener("click", startGame)
