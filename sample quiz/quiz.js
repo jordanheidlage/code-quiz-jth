@@ -61,11 +61,13 @@ var question = [
 var index = 0
 
 function countDown() {
+    console.log(countDown)
     timeRemaining--
     timerEl.textContent = timeRemaining
 }
 
 function startGame() {
+    console.log(startGame)
     qaViewEl.classList.remove("hide")
     introEl.classList.add("hide")
     timerEl.textContent = timeRemaining
@@ -74,6 +76,7 @@ function startGame() {
 }
 
 function displayQuestions() {
+    console.log(displayQuestions)
     titleEl.textContent = question[index].title
     choicesEl.innerHTML = '';
     for (var i = 0; i < question[index].answers.length; i++) {
@@ -90,9 +93,10 @@ function displayQuestions() {
 }
 
 function checkAnswer() {
+    console.log(checkAnswer)
     if (this.value !== question[index].solution) {
         timeRemaining -= 15;
-        // timeRemaining = timeRemaining - 15;
+        timeRemaining = timeRemaining - 15;
 
         timerEl.textContent = timeRemaining
     } 
@@ -108,12 +112,14 @@ function checkAnswer() {
 
 function gameOver() {
 //     step 3. Once you answer all the questions or the time runs out, you will be presented with the score and input text to enter your initial and a submit button. The timer should stop
+console.log(gameOver)
 qaViewEl.classList.add('hide')
 inputInitialEl.classList.remove('hide')
 clearInterval(clockid)
 }
 
 function saveGame(){
+    console.log(saveGame)
     event.preventDefault();
 qaViewEl.classList.add('hide')
 inputInitialEl.classList.add('hide')
@@ -124,7 +130,7 @@ dashboard=innerHTML="";
 for (let i = 0; i < dashboard.length; i++) {
     const element = array[index];
     let li =document.createElement("li");
-    li.textContent = ${dashboard[i].enterInitialEl}: ${dashboard[i].saveEl}
+    li.textContent = ${dashboard[i].enterInitialEl}: ${dashboard[i].saveEl};
     dashboard.append(li);
 }
 
@@ -133,12 +139,15 @@ displayScores();
     // and time left becomes your score.
     // When you click the submit, it store your initial and score in localstorage
 function storeScores(){
+    console.log(storeScores)
     localStorage.setItem("dashboard", JSON.stringify(dashboard));
 }
 function displayScores(){
+    console.log(displayScores)
     let storedDashboard = JSON.parse(localStorage.getItem("dashboard"));
 }
 function clearScores() {
+    console.log(clearScores)
     localStorage.clear();
     scoreListEl.innerHTML="";
 }
