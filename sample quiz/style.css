@@ -2,8 +2,39 @@ header{
     display: flex;
 }
 
+#intro{
+    display: hide;
+    justify-content: left;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+#choices{
+        width: 1000px;
+        height: 300px;
+        max-width: 80%;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10 px;
+        box-shadow: 0 0 10px 2px;
+}
+
 #high-scores{
     width: 80%;
+    font-weight: bold;
 }
 #timer{
     width:20%

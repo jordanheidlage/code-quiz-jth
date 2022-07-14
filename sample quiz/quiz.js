@@ -5,10 +5,12 @@ var titleEl = document.querySelector
     ("#title")
 var choicesEl = document.querySelector("#choices")
 var inputInitialEl = document.querySelector("#input-initial")
-var enterInitialEl = document.querySelector("#enter-inital")
+var enterInitialEl = document.querySelector("#enter-initial")
 var saveEl = document.querySelector("#save")
-var dashboard = document.querySelector("#dashboard")
+var dashboard = document.querySelector("#dashboard");
+var scoreboard = document.querySelector("#scoreboard")
 var startQuizBtn = document.querySelector("#start-quiz")
+var highscores =  JSON.parse(localStorage.getItem("highscores")) || [];
 /*
 step 1. displays start page - title and paragraph
 start button -  (triggers the quiz game and displays timer and question page)
@@ -47,14 +49,14 @@ var question = [
         solution: "Array"
     },
     {
-        title: "What language will you use to style your html page?",
-        answers: ["Javascript", "CSS", "R", "Python"],
-        solution: "answer2"
+        title: "What do you enter into the terminal to open a code repository?",
+        answers: [". code", ". open", "open sesame", "code ."],
+        solution: ". code"
     },
     {
-        title: "Test?",
-        answers: ["Test", "Answer", "Test", "Test"],
-        solution: "answer2"
+        title: "Here's a freebie, please dont get this wrong",
+        answers: ["False", "True", "False", "False"],
+        solution: "True"
     }
 ]
 
@@ -96,63 +98,68 @@ function checkAnswer() {
     console.log(checkAnswer)
     if (this.value !== question[index].solution) {
         timeRemaining -= 15;
-        timeRemaining = timeRemaining - 15;
-
+       
         timerEl.textContent = timeRemaining
-    } 
+    }
 
     index++
 
-    if (question.length === index){
+    if (question.length === index) {
         gameOver()
-    }else{
+    } else {
         displayQuestions()
     }
 }
 
 function gameOver() {
-//     step 3. Once you answer all the questions or the time runs out, you will be presented with the score and input text to enter your initial and a submit button. The timer should stop
-console.log(gameOver)
-qaViewEl.classList.add('hide')
-inputInitialEl.classList.remove('hide')
-clearInterval(clockid)
+    //     step 3. Once you answer all the questions or the time runs out, you will be presented with the score and input text to enter your initial and a submit button. The timer should stop
+    console.log(gameOver)
+    qaViewEl.classList.add('hide')
+    inputInitialEl.classList.remove('hide')
+    clearInterval(clockid)
 }
 
-function saveGame(){
-    console.log(saveGame)
-    event.preventDefault();
-qaViewEl.classList.add('hide')
-inputInitialEl.classList.add('hide')
-inputInitialEl.classList.remove('hide')
-let initials = enterInitialEl.value.toUpperCase();
-dashboard.push({ initials: init, dashboard: timeRemaining});
-dashboard=innerHTML="";
-for (let i = 0; i < dashboard.length; i++) {
-    const element = array[index];
-    let li =document.createElement("li");
-    li.textContent = dashboard[i].enterInitialEl + ": " + dashboard[i].saveEl;
-    dashboard.append(li);
-}
+function saveGame() {
 
-storeScores();
-displayScores();
+    let initials = enterInitialEl.value;
+    console.log(initials)
+
+    highscores.push({ 
+        initials: initials, 
+        score: timeRemaining 
+    });
+    
+    
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+    
+    displayScores();
     // and time left becomes your score.
     // When you click the submit, it store your initial and score in localstorage
-function storeScores(){
-    console.log(storeScores)
-    localStorage.setItem("dashboard", JSON.stringify(dashboard));
 }
-function displayScores(){
-    console.log(displayScores)
-    let storedDashboard = JSON.parse(localStorage.getItem("dashboard"));
+
+
+
+
+
+
+function displayScores() {
+    dashboard.classList.remove('hide')
+    inputInitialEl.classList.add('hide')
+    
+    scoreboard.innerHTML = "";
+    for (let i = 0; i < highscores.length; i++) {
+    
+        let li = document.createElement("li");
+        li.textContent = highscores[i].initials + ": " + highscores[i].score;
+        scoreboard.append(li);
+    }
 }
+
 function clearScores() {
     console.log(clearScores)
     localStorage.clear();
-    scoreListEl.innerHTML="";
+    // scoreListEl.innerHTML = "";
 }
-}
-
-clearScrBtn.addEventListener("click", clearScores);
-saveEl.addEventListener("submit", saveGame)
+// clearScrBtn.addEventListener("click", clearScores);
+saveEl.addEventListener("click", saveGame)
 startQuizBtn.addEventListener("click", startGame)
